@@ -1,40 +1,41 @@
-
 pipeline {
-    agent any
+agent any
 
-    stages {
-        stage('Checkout') {
-            steps {
-                echo 'Code checked out from GitHub'
-            }
-        }
-
-        stage('Compile') {
-            steps {
-                bat 'python -m py_compile app.py'
-            }
-        }
-
-        stage('Test') {
-            steps {
-                bat 'python -m unittest test_app.py'
-            }
-        }
-
-        stage('Package') {
-            steps {
-                bat 'tar -czf app.tar.gz app.py'
-            }
+```
+stages {
+    stage('Checkout') {
+        steps {
+            echo 'Code checked out from GitHub'
         }
     }
 
-    post {
-        success {
-            echo 'CI/CD Pipeline completed successfully!'
+    stage('Compile') {
+        steps {
+            bat '"PYTHON_PATH" -m py_compile app.py'
         }
-        failure {
-            echo 'CI/CD Pipeline failed!'
+    }
+
+    stage('Test') {
+        steps {
+            bat '"PYTHON_PATH" -m unittest test_app.py'
+        }
+    }
+
+    stage('Package') {
+        steps {
+            bat 'tar -czf app.tar.gz app.py'
         }
     }
 }
 
+post {
+    success {
+        echo 'CI/CD Pipeline completed successfully!'
+    }
+    failure {
+        echo 'CI/CD Pipeline failed!'
+    }
+}
+```
+
+}
