@@ -1,6 +1,7 @@
 pipeline {
 agent any
 
+
 stages {
     stage('Checkout') {
         steps {
@@ -10,13 +11,13 @@ stages {
 
     stage('Compile') {
         steps {
-            bat '"PYTHON_PATH" -m py_compile app.py'
+            bat '"C:\\Users\\chhar\\AppData\\Local\\Programs\\Python\\Python312\\python.exe" -m py_compile app.py'
         }
     }
 
     stage('Test') {
         steps {
-            bat '"PYTHON_PATH" -m unittest test_app.py'
+            bat '"C:\\Users\\chhar\\AppData\\Local\\Programs\\Python\\Python312\\python.exe" -m unittest test_app.py'
         }
     }
 
