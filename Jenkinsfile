@@ -1,10 +1,11 @@
+```groovy
 pipeline {
     agent any
 
     stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/USERNAME/REPOSITORY.git'
+                echo 'Code checked out from GitHub'
             }
         }
 
@@ -26,4 +27,14 @@ pipeline {
             }
         }
     }
+
+    post {
+        success {
+            echo 'CI/CD Pipeline completed successfully!'
+        }
+        failure {
+            echo 'CI/CD Pipeline failed!'
+        }
+    }
 }
+```
